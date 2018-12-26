@@ -2,12 +2,16 @@
 Thanks for checking out SearchEZ!
 
 SearchEZ is aimed to be a simple utility that will allow users to find the cheapest price of a product across various e-commerce websites.
-Currently the program only implements a GUI that will give you the URL of searched keyword on Amazon, Flipkart and Ebay. (More sites to be added soon!)
+Currently the program only implements a GUI that will give you the URL of searched keyword on Amazon, Flipkart, Ebay, Shopclues and Snapdeal. (More sites to be added soon!)
+
+What's New?
+1. Added buttons instead of Textfields for websites, which when clicked will directly open the link on your default browser
+2. Added 2 more e-commerce websites (Shopclues and Snapdeal).
+3. Added an attractive background image to the window.
 
 For next patch:
-1. Adding buttons next to the search URLs to directly open the link in your web browser.
-2. Adding 2 more e-commerce websites.
-3. Making the search window more attractive.
+1. Check if the product is available on the website or not.
+2. If available, the price will be fetched.
 
 Remaining objectives:
 1. Obtaining the desired product itself from the search URL.
