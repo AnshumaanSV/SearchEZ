@@ -22,4 +22,4 @@ Issues to be fixed:
 2. Instead of hardcoding the search URL for specific sites, make the search general to work on any website.
 3. Making separate Java files instead of just one.
 
-Time spent/Lines of code(Just to record my efficiency) : 6hours/99Lines
+Time spent/Lines of code(Just to record my efficiency) : 9hours/195Lines
