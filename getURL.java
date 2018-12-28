@@ -19,15 +19,6 @@ public class getURL
         return url1 + result + url2;
     }
 
-    public String Ebay(String Keyword) 
-    {
-        String url1 = "https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=";
-        String url2 = "&_sacat=0";
-        String result = Keyword.replace(" ", "+");
-
-        return url1 + result + url2;
-    }
-
     public String Shopclues(String Keyword)
     {
         String url1 = "https://www.shopclues.com/search?q=";

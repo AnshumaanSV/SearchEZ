@@ -13,9 +13,9 @@ class searchURL extends Frame implements WindowListener, ActionListener
 
     Button AmazonButton = new Button("Amazon");
     Button FlipkartButton = new Button("Flipkart");
-    Button EbayButton = new Button("Ebay");
     Button ShopcluesButton = new Button("Shopclues");
     Button SnapdealButton = new Button("Snapdeal");
+    Button OpenallButton = new Button("Open All");
 
     Image Background = Toolkit.getDefaultToolkit().createImage("Resources/bg.jpg");
     Image Icon = Toolkit.getDefaultToolkit().getImage("Resources/icon.png");    
@@ -38,9 +38,9 @@ class searchURL extends Frame implements WindowListener, ActionListener
 
         add(AmazonButton);                                    //Adding the website buttons to frame
         add(FlipkartButton);
-        add(EbayButton);
         add(ShopcluesButton);
         add(SnapdealButton);
+        add(OpenallButton);
 
         searchField.setEditable(true);                        //Lets the user to type in TextField
         
@@ -79,19 +79,6 @@ class searchURL extends Frame implements WindowListener, ActionListener
             }
         });
 
-        EbayButton.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                try 
-                {
-                    Desktop.getDesktop().browse(new URL(modURL.Ebay(Keyword)).toURI());
-                } 
-                catch (Exception E) {}
-            }
-        });
-
         ShopcluesButton.addActionListener(new ActionListener()
         {
             @Override
@@ -112,6 +99,22 @@ class searchURL extends Frame implements WindowListener, ActionListener
             {
                 try 
                 {
+                    Desktop.getDesktop().browse(new URL(modURL.Snapdeal(Keyword)).toURI());
+                } 
+                catch (Exception E) {}
+            }
+        });
+
+        OpenallButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                try 
+                {
+                    Desktop.getDesktop().browse(new URL(modURL.Amazon(Keyword)).toURI());
+                    Desktop.getDesktop().browse(new URL(modURL.Flipkart(Keyword)).toURI());
+                    Desktop.getDesktop().browse(new URL(modURL.Shopclues(Keyword)).toURI());
                     Desktop.getDesktop().browse(new URL(modURL.Snapdeal(Keyword)).toURI());
                 } 
                 catch (Exception E) {}
