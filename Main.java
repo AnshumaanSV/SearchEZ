@@ -4,6 +4,8 @@ import java.awt.Desktop.*;
 import java.awt.Image.*;
 import java.net.*;
 
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+
 class searchURL extends Frame implements WindowListener, ActionListener 
 {
     Label searchLabel = new Label("Enter a product");
@@ -28,34 +30,44 @@ class searchURL extends Frame implements WindowListener, ActionListener
     getURL modURL = new getURL();
     getPrice Price = new getPrice(); 
     getLink Link = new getLink();
-    
+
     String Keyword;
     
     searchURL()
     {
         setLayout(new FlowLayout());                          //Frame
         setTitle("SearchEZ!");                                //Naming the frame
-        setSize(640, 200);                                    //Setting frame size
+        setSize(640, 400);                                    //Setting frame size
         setIconImage(Icon);                                   //Setting frame icon
         addWindowListener(this);                              //Window listener to close the window
         setResizable(false);                                  //Frame cannot be resized
         setVisible(true);                                     //Letting the frame display
-        searchField.setEditable(true);                        //Lets the user to type in TextField
+        searchField.setEditable(true);                        //Lets the user to type in TextField  
 
+        searchLabel.setBackground(new Color(52,179,196));
         add(searchLabel);                                     //Adding the Search components to frame
         add(searchField);
+        searchButton.setBackground(new Color(52,179,196));
         add(searchButton);
 
+        AmazonLabel.setBackground(new Color(52,179,196));
         add(AmazonLabel);                                     //Adding Amazon elements to the frame
         add(AmazonField);
+        AmazonBuy.setBackground(new Color(52,179,196));
         add(AmazonBuy);
 
+        FlipkartLabel.setBackground(new Color(52,179,196));
         add(FlipkartLabel);                                   //Adding FLipkart elements to the frame
         add(FlipkartField);
+        FlipkartBuy.setBackground(new Color(52,179,196));
         add(FlipkartBuy);
 
+        Warning1.setBackground(new Color(52,179,196));
+        Warning2.setBackground(new Color(52,179,196));
         add(Warning1);
         add(Warning2);
+
+        add(ImagePanel);
 
         searchButton.addActionListener(new ActionListener()   //Search button setup
         {
@@ -97,7 +109,7 @@ class searchURL extends Frame implements WindowListener, ActionListener
         });
     }
 
-    public void paint(Graphics g)                             //Painting backgrounf image
+    public void paint(Graphics g)                             //Painting background image
     {
         super.paint(g);
         g.drawImage(Background, 0, 0, this);
