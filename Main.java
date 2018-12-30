@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.awt.Desktop.*;
 import java.awt.Image.*;
 import java.net.*;
-import sites.getURL;
 
 class searchURL extends Frame implements WindowListener, ActionListener 
 {
@@ -20,9 +19,8 @@ class searchURL extends Frame implements WindowListener, ActionListener
     Button AmazonBuy = new Button("Buy");
     Button FlipkartBuy = new Button("Buy");
 
-    Label Warning1 = new Label("*If Amazon shows 'Product not found' but the site has the product, try pressing 'Search' again");
-    Label Warning2 = new Label("'Buy' link takes some time to open, so don't spam it if nothing's happening!");
-    Label Warning3 = new Label("Even though this works fine for most products, you may experience some problem in a few cases");
+    Label Warning1 = new Label("'Buy' link takes some time to open, so don't spam it if nothing's happening!");
+    Label Warning2 = new Label("Even though this works fine for most products, you may experience some problem in a few cases");
 
     Image Background = Toolkit.getDefaultToolkit().createImage("Resources/bg.jpg");
     Image Icon = Toolkit.getDefaultToolkit().getImage("Resources/icon.png");    
@@ -37,7 +35,7 @@ class searchURL extends Frame implements WindowListener, ActionListener
     {
         setLayout(new FlowLayout());                          //Frame
         setTitle("SearchEZ!");                                //Naming the frame
-        setSize(640, 230);                                    //Setting frame size
+        setSize(640, 200);                                    //Setting frame size
         setIconImage(Icon);                                   //Setting frame icon
         addWindowListener(this);                              //Window listener to close the window
         setResizable(false);                                  //Frame cannot be resized
@@ -58,7 +56,6 @@ class searchURL extends Frame implements WindowListener, ActionListener
 
         add(Warning1);
         add(Warning2);
-        add(Warning3);
 
         searchButton.addActionListener(new ActionListener()   //Search button setup
         {

@@ -1,5 +1,3 @@
-package sites;
-
 public class getURL
 {
     public String Amazon(String Keyword) 

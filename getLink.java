@@ -22,6 +22,9 @@ public class getLink
             }
         } 
         catch (Exception e) {}
+        
+        if(result.charAt(0) == '/')
+            result = "https://www.amazon.in"+result;
 
         return result;
     }
@@ -41,6 +44,22 @@ public class getLink
             }
         } 
         catch (Exception e) {}
+
+        if(result == null)
+        {
+            try 
+            {
+                Document FlipkartDoc = Jsoup.connect(url).get();
+                Elements FlipkartTemp = FlipkartDoc.select("div._3liAhj._1R0K0g");
+
+                for(Element Link:FlipkartTemp)
+                {   
+                    result = "https://www.flipkart.com"+Link.getElementsByTag("a").first().attr("href").toString();
+                    break;
+                }
+            } 
+        catch (Exception e) {}
+        }
 
         return result;
     }

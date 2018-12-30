@@ -6,9 +6,11 @@ The first prototype of SearchEZ is now live! Now instantly get the listing of yo
 What's New?
 1. Updated cleaner UI!
 2. Actual price and buy link of the desired product added.
+3. Handled certain cases of Amazon and Flipkart not opening buy link.
+4. Temporarily fixed Amazon showing "Product not found".
 
 For next patch: 
 1. Few new websites will be added.
 2. Currently the program is not at all handled for wrong links, so you may get wrong product. To be soon fixed.
-3. Issue with Amazon showing "Product not found" will be investigated
+3. Issue with Amazon showing "Product not found" will be further investigated.
 
