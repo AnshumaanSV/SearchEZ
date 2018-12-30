@@ -4,8 +4,6 @@ import java.awt.Desktop.*;
 import java.awt.Image.*;
 import java.net.*;
 
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
-
 class searchURL extends Frame implements WindowListener, ActionListener 
 {
     Label searchLabel = new Label("Enter a product");
@@ -37,7 +35,7 @@ class searchURL extends Frame implements WindowListener, ActionListener
     {
         setLayout(new FlowLayout());                          //Frame
         setTitle("SearchEZ!");                                //Naming the frame
-        setSize(640, 400);                                    //Setting frame size
+        setSize(640, 200);                                    //Setting frame size
         setIconImage(Icon);                                   //Setting frame icon
         addWindowListener(this);                              //Window listener to close the window
         setResizable(false);                                  //Frame cannot be resized
@@ -66,8 +64,6 @@ class searchURL extends Frame implements WindowListener, ActionListener
         Warning2.setBackground(new Color(52,179,196));
         add(Warning1);
         add(Warning2);
-
-        add(ImagePanel);
 
         searchButton.addActionListener(new ActionListener()   //Search button setup
         {

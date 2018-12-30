@@ -14,3 +14,5 @@ For next patch:
 2. Currently the program is not at all handled for wrong links, so you may get wrong product. To be soon fixed.
 3. Issue with Amazon showing "Product not found" will be further investigated.
 
+**THE ENTIRE CODE IS WRITTEN WITH JAVA AWT AS IT'S GUI. I WILL BE REWRITING THE ENTIRE CODE ONCE AGAIN USING SWING, SO EVERYTHING ELSE IS ON HOLD. SECOND AND FINAL PROTOTYPE WILL BE LIVE ON 1st JANUARY!**
+
