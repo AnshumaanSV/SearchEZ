@@ -54,6 +54,7 @@ class searchURL extends JFrame implements ActionListener
         MainFrame.setContentPane(new ImagePanel(Background));
         
         MainFrame.setVisible(true);
+	MainFrame.setResizable(false);
         MainFrame.setSize(650, 80);
         MainFrame.setTitle("SearchEZ!");
         MainFrame.setIconImage(Icon);
