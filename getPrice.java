@@ -23,6 +23,23 @@ public class getPrice
         }
         catch(Exception E){}
 
+        if(Price == "Product not found")
+        {
+            try
+            {
+                Document AmazonDoc = Jsoup.connect(url).get();
+                Elements AmazonTemp = AmazonDoc.select("span.a-size-base.a-color-price.s-price.a-text-bold");
+
+                for(Element priceList:AmazonTemp)
+                {
+                    Price = priceList.getElementsByTag("span").first().text().toString();
+                    Price = Price.replace(",","");
+                    break;
+                }
+            }   
+            catch(Exception E){}   
+        }
+
         return Price;
     }
 

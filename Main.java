@@ -1,80 +1,111 @@
+import javax.swing.*;
+import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Desktop.*;
 import java.awt.Image.*;
-import java.net.*;
 
-class searchURL extends Frame implements WindowListener, ActionListener 
+class ImagePanel extends JComponent 
 {
-    Label searchLabel = new Label("Enter a product");
-    TextField searchField = new TextField(50);
-    Button searchButton = new Button("Search");
-
-    Label AmazonLabel = new Label("Amazon*");
-    Label FlipkartLabel = new Label("Flipkart ");
-
-    TextField AmazonField = new TextField(60);
-    TextField FlipkartField = new TextField(60);
-
-    Button AmazonBuy = new Button("Buy");
-    Button FlipkartBuy = new Button("Buy");
-
-    Label Warning1 = new Label("'Buy' link takes some time to open, so don't spam it if nothing's happening!");
-    Label Warning2 = new Label("Even though this works fine for most products, you may experience some problem in a few cases");
-
-    Image Background = Toolkit.getDefaultToolkit().createImage("Resources/bg.jpg");
-    Image Icon = Toolkit.getDefaultToolkit().getImage("Resources/icon.png");    
+    private Image image;
     
+    ImagePanel(){}
+
+    ImagePanel(Image image) 
+    {
+        this.image = image;
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) 
+    {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
+    }
+}
+
+class searchURL extends JFrame implements ActionListener
+{
+    Image Icon = Toolkit.getDefaultToolkit().createImage("Resources/icon.png");
+    Image Background = Toolkit.getDefaultToolkit().createImage("Resources/bg.png");
+
+    JLabel SearchLabel = new JLabel("Enter a Product");
+    JTextField SearchField = new JTextField();
+    JButton SearchButton = new JButton("Search");
+
+    JTextField AmazonField = new JTextField();
+    JButton AmazonBuy = new JButton("Buy");
+
+    JTextField FlipkartField = new JTextField();
+    JButton FlipkartBuy = new JButton("Buy");
+
+    JLabel Warning1 = new JLabel("'Buy' link takes some time to open, so don't spam it if nothing's happening!");
+    JLabel Warning2 = new JLabel("Issues and suggestions are welcomed! Mail at anshumaansv@gmail.com");
+
     getURL modURL = new getURL();
     getPrice Price = new getPrice(); 
     getLink Link = new getLink();
 
     String Keyword;
-    
+
     searchURL()
     {
-        setLayout(new FlowLayout());                          //Frame
-        setTitle("SearchEZ!");                                //Naming the frame
-        setSize(640, 200);                                    //Setting frame size
-        setIconImage(Icon);                                   //Setting frame icon
-        addWindowListener(this);                              //Window listener to close the window
-        setResizable(false);                                  //Frame cannot be resized
-        setVisible(true);                                     //Letting the frame display
-        searchField.setEditable(true);                        //Lets the user to type in TextField  
+        JFrame MainFrame = new JFrame();
+        MainFrame.setContentPane(new ImagePanel(Background));
+        
+        MainFrame.setVisible(true);
+        MainFrame.setSize(650, 80);
+        MainFrame.setTitle("SearchEZ!");
+        MainFrame.setIconImage(Icon);
+        MainFrame.setResizable(true);
+        MainFrame.setLayout(null);
+        MainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        searchLabel.setBackground(new Color(52,179,196));
-        add(searchLabel);                                     //Adding the Search components to frame
-        add(searchField);
-        searchButton.setBackground(new Color(52,179,196));
-        add(searchButton);
+        SearchLabel.setBounds(30, 10, 120, 25);
+        SearchField.setBounds(160, 10, 350, 25);
+        SearchButton.setBounds(520, 10, 110, 25);
 
-        AmazonLabel.setBackground(new Color(52,179,196));
-        add(AmazonLabel);                                     //Adding Amazon elements to the frame
-        add(AmazonField);
-        AmazonBuy.setBackground(new Color(52,179,196));
-        add(AmazonBuy);
+        MainFrame.add(SearchLabel);
+        MainFrame.add(SearchField);
+        MainFrame.add(SearchButton);
 
-        FlipkartLabel.setBackground(new Color(52,179,196));
-        add(FlipkartLabel);                                   //Adding FLipkart elements to the frame
-        add(FlipkartField);
-        FlipkartBuy.setBackground(new Color(52,179,196));
-        add(FlipkartBuy);
+        AmazonField.setBounds(50, 90, 170, 25);
+        AmazonBuy.setBounds(220, 90, 80, 25); 
+        
+        FlipkartField.setBounds(370, 90, 170, 25);
+        FlipkartBuy.setBounds(540, 90, 80, 25);
 
-        Warning1.setBackground(new Color(52,179,196));
-        Warning2.setBackground(new Color(52,179,196));
-        add(Warning1);
-        add(Warning2);
+        Warning1.setBounds(55, 140, 600, 15);
+        Warning2.setBounds(65, 160, 600, 15);
 
-        searchButton.addActionListener(new ActionListener()   //Search button setup
+        SearchButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Keyword = searchField.getText();
+                Keyword = SearchField.getText();
 
-                AmazonField.setText(Price.AmazonPrice(modURL.Amazon(Keyword)));
-    
-                FlipkartField.setText(Price.FlipkartPrice(modURL.Flipkart(Keyword)));
+                MainFrame.add(AmazonField);
+                MainFrame.add(AmazonBuy);
+
+                MainFrame.add(FlipkartField);
+                MainFrame.add(FlipkartBuy);
+
+                if(Price.AmazonPrice(modURL.Amazon(Keyword)) == "Product not found")
+                    AmazonField.setText(Price.AmazonPrice(modURL.Amazon(Keyword)));
+
+                else
+                    AmazonField.setText("INR "+Price.AmazonPrice(modURL.Amazon(Keyword)));
+
+                if(Price.FlipkartPrice(modURL.Flipkart(Keyword)) == "Product not found")
+                    FlipkartField.setText(Price.FlipkartPrice(modURL.Flipkart(Keyword)));
+
+                else
+                FlipkartField.setText("INR "+Price.FlipkartPrice(modURL.Flipkart(Keyword)));
+
+                MainFrame.add(Warning1);
+                MainFrame.add(Warning2);
+                MainFrame.setSize(650, 210);
             }
         });
 
@@ -104,30 +135,18 @@ class searchURL extends Frame implements WindowListener, ActionListener
             }
         });
     }
-
-    public void paint(Graphics g)                             //Painting background image
+    
+    protected void paintComponent(Graphics g) 
     {
-        super.paint(g);
         g.drawImage(Background, 0, 0, this);
     }
 
-    public void windowClosing(WindowEvent e)                  //Setting up the close button
-    {
-        System.exit(0);
-    }
-
-    public void actionPerformed(ActionEvent e) {}             //All functions are needed to be overriden for debugging
-    public void windowOpened(WindowEvent e) {}
-    public void windowClosed(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
-    public void windowActivated(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
+    public void actionPerformed(ActionEvent e) {}
 }
 
-public class Main 
-{  
-     public static void main(String[] args) 
+public class Main
+{
+    public static void main(String[] args)
     {
         searchURL search = new searchURL();
     }
